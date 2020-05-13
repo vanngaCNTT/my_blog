@@ -28,9 +28,19 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+
+
+# For Restful API
+from .apps.restful.urls import urlpatterns as rest_api
+urlpatterns += rest_api
+
+# For Graphql API
+from .apps.graphql.urls import urlpatterns as graphql_api
+urlpatterns += graphql_api
+
+
 # redirect to the UI
 from django.views.generic import TemplateView
-
 urlpatterns += [
     re_path(r'^((?!api).)*$', TemplateView.as_view(template_name='index.html'), name='index'),
 ]
